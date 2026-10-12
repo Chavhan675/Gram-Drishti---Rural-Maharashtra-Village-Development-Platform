@@ -1,0 +1,44 @@
+@import "tailwindcss";
+
+@layer base {
+  body {
+    font-family: 'Plus Jakarta Sans', 'Noto Sans Devanagari', -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+    background-color: #FAFAF8;
+    color: #0F172A;
+  }
+
+  h1, h2, h3, .font-serif-title {
+    font-feature-settings: "cv02", "cv03", "cv04", "cv11";
+  }
+}
+
+/* Tabular figures for demographic and financial data */
+.tabular-nums {
+  font-variant-numeric: tabular-nums;
+}
+
+/* Print styling for official Village Factsheet PDF export */
+@media print {
+  header, footer, .no-print, button, .interactive-banner {
+    display: none !important;
+  }
+  
+  body {
+    background: #FFFFFF !important;
+    color: #000000 !important;
+    font-size: 12pt !important;
+  }
+
+  .print-only {
+    display: block !important;
+  }
+
+  .print-container {
+    width: 100% !important;
+    max-width: 100% !important;
+    padding: 0 !important;
+    margin: 0 !important;
+    box-shadow: none !important;
+    border: none !important;
+  }
+}
