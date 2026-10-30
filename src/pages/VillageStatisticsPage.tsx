@@ -14,7 +14,10 @@ import {
   GraduationCap,
   Building,
   Wheat,
-  Users
+  Users,
+  Brain,
+  Cpu,
+  ArrowRight
 } from 'lucide-react';
 
 export const VillageStatisticsPage: React.FC = () => {
@@ -175,6 +178,37 @@ export const VillageStatisticsPage: React.FC = () => {
               </div>
             );
           })}
+        </div>
+
+        {/* MACHINE LEARNING CLUSTERING & PREDICTIVE ANALYTICS CTA */}
+        <div className="mt-8 bg-gradient-to-br from-indigo-950 via-slate-900 to-indigo-900 text-white p-6 sm:p-8 rounded-2xl border border-indigo-700/50 shadow-xl relative overflow-hidden">
+          <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-5">
+            <div className="space-y-2 max-w-2xl">
+              <div className="inline-flex items-center gap-2 px-3 py-0.5 rounded-full bg-amber-400/20 border border-amber-400/30 text-amber-300 text-xs font-mono font-bold">
+                <Brain className="w-3.5 h-3.5 text-amber-400" />
+                <span>UNSUPERVISED ML & ECONOMETRICS FORECASTING</span>
+              </div>
+              <h3 className="text-xl font-bold font-serif text-white">
+                {language === 'mr'
+                  ? 'महाराष्ट्र ग्राम सामाजिक-आर्थिक क्लस्टरिंग (PCA व K-Means)'
+                  : 'Socio-Economic Village Clustering (PCA & K-Means Model)'}
+              </h3>
+              <p className="text-xs text-indigo-200 leading-relaxed">
+                {language === 'mr'
+                  ? '४३,०००+ गावांच्या लोकसंख्या, रस्ते, साक्षरता आणि जलसुरक्षा निर्देशांकांवर आधारित Principal Component Analysis (2D Projection) आणि क्लस्टर सेंट्रॉइड्सचे थेट प्रात्यक्षिक.'
+                  : 'Discover how this village clusters against 43,665 Maharashtra Panchayats using 2D PCA dimensionality reduction, Silhouette score validation, and ARIMA hydrological models.'}
+              </p>
+            </div>
+
+            <button
+              onClick={() => navigateTo('ml-analytics')}
+              className="px-5 py-3 bg-gradient-to-r from-amber-500 to-amber-400 hover:from-amber-400 hover:to-amber-300 text-slate-950 font-bold text-xs sm:text-sm rounded-xl transition-all shadow-md inline-flex items-center gap-2 shrink-0 self-start sm:self-auto"
+            >
+              <Cpu className="w-4 h-4" />
+              <span>{language === 'mr' ? 'थेट क्लस्टरिंग लॅब उघडा' : 'Explore ML Clustering'}</span>
+              <ArrowRight className="w-4 h-4" />
+            </button>
+          </div>
         </div>
       </div>
     </div>

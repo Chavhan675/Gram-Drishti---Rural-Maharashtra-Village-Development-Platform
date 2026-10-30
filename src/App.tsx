@@ -17,11 +17,17 @@ import { MapPage } from './pages/MapPage';
 import { AnnouncementsPage } from './pages/AnnouncementsPage';
 import { AdminDashboardPage } from './pages/AdminDashboardPage';
 import { AboutPage } from './pages/AboutPage';
+import { MlAnalyticsPage } from './pages/MlAnalyticsPage';
+import { PresentationPage } from './pages/PresentationPage';
+import { Village3DDigitalTwinPage } from './pages/Village3DDigitalTwinPage';
+import { AiChatbotPage } from './pages/AiChatbotPage';
+import { GisPlannerPage } from './pages/GisPlannerPage';
 import { ProjectDetailModal } from './components/ProjectDetailModal';
 import { SchemeDetailModal } from './components/SchemeDetailModal';
 import { ShareVillageModal } from './components/ShareVillageModal';
 import { AiAssistantModal } from './components/AiAssistantModal';
 import { VillageFactsheetModal } from './components/VillageFactsheetModal';
+import { OfflineIndicator } from './components/OfflineIndicator';
 
 const MainContent: React.FC = () => {
   const { currentPage } = useApp();
@@ -43,6 +49,11 @@ const MainContent: React.FC = () => {
       {currentPage === 'announcements' && <AnnouncementsPage />}
       {currentPage === 'admin' && <AdminDashboardPage />}
       {currentPage === 'about' && <AboutPage />}
+      {currentPage === 'ml-analytics' && <MlAnalyticsPage />}
+      {currentPage === 'presentation' && <PresentationPage />}
+      {currentPage === 'village-3d' && <Village3DDigitalTwinPage />}
+      {currentPage === 'ai-chat' && <AiChatbotPage />}
+      {currentPage === 'gis-planner' && <GisPlannerPage />}
     </main>
   );
 };
@@ -51,6 +62,7 @@ export function App() {
   return (
     <AppProvider>
       <div className="min-h-screen flex flex-col bg-white text-slate-900 selection:bg-amber-200">
+        <OfflineIndicator />
         <Header />
         <MainContent />
         <Footer />

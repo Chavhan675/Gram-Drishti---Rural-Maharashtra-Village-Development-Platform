@@ -64,7 +64,18 @@ const AppContext = createContext<AppContextType | undefined>(undefined);
 const LOCAL_STORAGE_ISSUES_KEY = 'gram_drishti_issues_v1';
 
 export const AppProvider: React.FC<{ children: React.ReactNode }> = ({ children }) => {
-  const [language, setLanguage] = useState<Language>('mr');
+  // Always start in English as mandated
+  const [language, setLanguage] = useState<Language>('en');
+
+  // Ensure any cached legacy language key is cleared so app strictly boots in English
+  useEffect(() => {
+    try {
+      localStorage.removeItem('gram_drishti_lang');
+    } catch {
+      // ignore
+    }
+  }, []);
+
   const [currentPage, setCurrentPage] = useState<PageView>('home');
   const [selectedVillageId, setSelectedVillageId] = useState<string>('malegaon-ardhapur-nanded');
   const [allVillages] = useState<Village[]>(MOCK_VILLAGES);

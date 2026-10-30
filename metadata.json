@@ -1,6 +1,6 @@
 {
   "name": "Gram Drishti - Rural Maharashtra Village Development Platform",
-  "description": "दृष्टी गावाच्या विकासाची - Discover village development, facilities, government schemes, and citizen reporting across Maharashtra.",
+  "description": "दृष्टी गावाच्या विकासाची - Discover village development, facilities, government schemes, citizen reporting, and machine learning agro-climatic analytics across Maharashtra.",
   "requestFramePermissions": [],
   "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
 }

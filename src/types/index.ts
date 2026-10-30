@@ -15,7 +15,12 @@ export type PageView =
   | 'track-issue'
   | 'announcements'
   | 'admin'
-  | 'about';
+  | 'about'
+  | 'ml-analytics'
+  | 'presentation'
+  | 'village-3d'
+  | 'ai-chat'
+  | 'gis-planner';
 
 export type ProjectStatus = 'planned' | 'in-progress' | 'completed' | 'delayed';
 

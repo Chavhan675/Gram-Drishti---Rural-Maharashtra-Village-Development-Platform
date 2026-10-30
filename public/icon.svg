@@ -1,0 +1,59 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" width="512" height="512">
+  <defs>
+    <linearGradient id="bg" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#7c2d12" />
+      <stop offset="50%" stop-color="#9a3412" />
+      <stop offset="100%" stop-color="#ea580c" />
+    </linearGradient>
+    <linearGradient id="gold" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#fef08a" />
+      <stop offset="50%" stop-color="#f59e0b" />
+      <stop offset="100%" stop-color="#d97706" />
+    </linearGradient>
+    <linearGradient id="glow" x1="0%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" stop-color="#ffffff" stop-opacity="0.3" />
+      <stop offset="100%" stop-color="#000000" stop-opacity="0.3" />
+    </linearGradient>
+  </defs>
+
+  <!-- Background Base -->
+  <rect width="512" height="512" rx="128" fill="url(#bg)" />
+  <rect width="512" height="512" rx="128" fill="url(#glow)" />
+
+  <!-- Inner Gold Border Ring -->
+  <rect x="24" y="24" width="464" height="464" rx="104" fill="none" stroke="url(#gold)" stroke-width="6" stroke-opacity="0.6" />
+
+  <!-- Rising Sun Motif -->
+  <circle cx="256" cy="200" r="70" fill="url(#gold)" />
+  <g stroke="url(#gold)" stroke-width="6" stroke-linecap="round" opacity="0.8">
+    <line x1="256" y1="90" x2="256" y2="110" />
+    <line x1="335" y1="121" x2="320" y2="135" />
+    <line x1="366" y1="200" x2="346" y2="200" />
+    <line x1="177" y1="121" x2="192" y2="135" />
+    <line x1="146" y1="200" x2="166" y2="200" />
+  </g>
+
+  <!-- Rural Fields Contours (Shet / Zameen) -->
+  <path d="M60 400 C 140 330, 220 370, 310 320 C 390 280, 430 330, 452 380 L 452 440 C 452 470, 420 488, 384 488 L 128 488 C 92 488, 60 470, 60 440 Z" fill="#14532d" opacity="0.9" />
+  <path d="M60 420 C 160 360, 260 410, 452 350 L 452 440 C 452 470, 420 488, 384 488 L 128 488 C 92 488, 60 470, 60 440 Z" fill="#15803d" opacity="0.8" />
+
+  <!-- Golden Wheat Sheaf (Lomb) -->
+  <g fill="url(#gold)" stroke="#78350f" stroke-width="2">
+    <!-- Center stalk -->
+    <path d="M256 160 C 254 280, 252 380, 256 460" stroke="url(#gold)" stroke-width="8" stroke-linecap="round" fill="none" />
+    <!-- Grains -->
+    <ellipse cx="256" cy="180" rx="14" ry="22" transform="rotate(0 256 180)" />
+    <ellipse cx="236" cy="210" rx="14" ry="22" transform="rotate(-30 236 210)" />
+    <ellipse cx="276" cy="210" rx="14" ry="22" transform="rotate(30 276 210)" />
+    <ellipse cx="230" cy="250" rx="14" ry="22" transform="rotate(-35 230 250)" />
+    <ellipse cx="282" cy="250" rx="14" ry="22" transform="rotate(35 282 250)" />
+    <ellipse cx="226" cy="290" rx="14" ry="22" transform="rotate(-40 226 290)" />
+    <ellipse cx="286" cy="290" rx="14" ry="22" transform="rotate(40 286 290)" />
+    <ellipse cx="224" cy="330" rx="14" ry="22" transform="rotate(-45 224 330)" />
+    <ellipse cx="288" cy="330" rx="14" ry="22" transform="rotate(45 288 330)" />
+  </g>
+
+  <!-- GramDrishti GD Monogram Bottom Crest -->
+  <rect x="180" y="420" width="152" height="42" rx="12" fill="#451a03" stroke="url(#gold)" stroke-width="3" />
+  <text x="256" y="450" font-family="system-ui, -apple-system, sans-serif" font-weight="900" font-size="24" fill="#fef3c7" text-anchor="middle" letter-spacing="3">GRAMDRISHTI</text>
+</svg>

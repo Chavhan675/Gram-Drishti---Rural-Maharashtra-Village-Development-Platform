@@ -153,6 +153,36 @@ export const AboutPage: React.FC = () => {
           </div>
         </div>
 
+        {/* Academic Capstone & Viva Defense Card */}
+        <div className="bg-stone-900 text-white rounded-2xl border border-stone-800 p-6 sm:p-7 shadow-lg space-y-3">
+          <div className="flex items-center justify-between">
+            <span className="text-[10px] font-mono uppercase tracking-widest text-amber-400 font-bold">
+              B.Tech CSE Semester VII · Capstone Defense
+            </span>
+            <span className="px-2 py-0.5 rounded bg-amber-400 text-stone-950 font-bold text-[10px] font-mono">
+              Evaluator Ready
+            </span>
+          </div>
+          <h3 className="text-lg font-bold text-white font-serif">
+            {language === 'mr' ? 'कॉलेज प्रकल्प मूल्यांकन व सादरीकरण' : 'Academic Viva Defense & Project Report Suite'}
+          </h3>
+          <p className="text-xs text-stone-300 leading-relaxed">
+            {language === 'mr'
+              ? 'प्रकल्प मार्गदर्शक व परीक्षकांसाठी (Sir) १०-स्लाइड डेक, FR-01 ते FR-10 थेट पडताळणी टेस्ट, ५-स्तरीय आर्किटेक्चर आणि डेटाबेस ER मॉडेल उपलब्ध आहे.'
+              : 'Dedicated presentation interface for the Project Evaluator (Sir) featuring 10 academic defense slides, live FR-01–FR-10 verification runner, 5-layer system architecture, and PostgreSQL 7-entity relational schema.'}
+          </p>
+          <div className="pt-2">
+            <button
+              onClick={() => navigateTo('presentation')}
+              className="px-5 py-2.5 bg-amber-400 hover:bg-amber-300 text-stone-950 text-xs font-bold rounded-lg transition-colors inline-flex items-center gap-2"
+            >
+              <span>🎓</span>
+              <span>{language === 'mr' ? 'सादरीकरण दालन उघडा (Project Defense)' : 'Open Project Defense for Sir'}</span>
+              <ArrowRight className="w-3.5 h-3.5" />
+            </button>
+          </div>
+        </div>
+
         {/* Digital Accessibility Standards */}
         <div className="bg-white rounded-2xl border border-amber-200 p-6 sm:p-7 shadow-sm space-y-3 text-xs sm:text-sm text-stone-700">
           <h3 className="text-base font-bold text-stone-950 font-serif">

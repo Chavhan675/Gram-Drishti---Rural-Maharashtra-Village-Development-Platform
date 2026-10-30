@@ -18,11 +18,14 @@ export const translations = {
     navAnnouncements: 'ग्रामसभा व सूचना',
     navAdmin: 'प्रशासकीय कक्ष',
     navAbout: 'माहिती व अस्वीकरण',
+    navMlLab: '🧠 AI, ML व डेटा विश्लेषण',
+    navDefense: '🎓 प्रकल्प सादरीकरण (Project Defense)',
+    navVillage3D: '🌐 ३डी डिजिटल ट्विन (3D Spatial Twin)',
     
     // Hero
     heroTitle: 'आपले गाव. आपली माहिती. आपल्या गावाची प्रगती.',
     heroSubtitle: 'महाराष्ट्रातील ग्रामीण भागासाठी लोकसंख्या, विकासकामे, शाळा, आरोग्य, शेती आणि शासकीय योजनांची माहिती जाणून घेण्याचे सोपे नागरिक व्यासपीठ.',
-    heroSearchPlaceholder: 'गावाचे नाव टाइप करा (उदा. मालेगाव, भिलार, राळेगण सिद्धी)...',
+    heroSearchPlaceholder: 'गावाचे नाव टाइप करा (उदा. मेडशी गाव, भिलार, राळेगण सिद्धी)...',
     ctaSearchVillage: 'माझे गाव शोधा',
     ctaExploreDevelopment: 'ग्राम विकास पहा',
     heroQuickSelector: 'आपले गाव निवडा',
@@ -205,11 +208,14 @@ export const translations = {
     navAnnouncements: 'Announcements',
     navAdmin: 'Administration',
     navAbout: 'About & Disclaimer',
+    navMlLab: '🧠 AI, ML & Data Lab',
+    navDefense: '🎓 Project Defense for Sir',
+    navVillage3D: '🌐 3D Digital Twin (Spatial Observatory)',
     
     // Hero
     heroTitle: 'Your Village. Your Information. Your Progress.',
     heroSubtitle: 'Discover verified information about your village in Maharashtra — demographics, development projects, schools, healthcare, agriculture, and citizen welfare schemes.',
-    heroSearchPlaceholder: 'Type village name (e.g. Malegaon, Bhilar, Ralegan Siddhi)...',
+    heroSearchPlaceholder: 'Type village name (e.g. Medshi Village, Bhilar, Ralegan Siddhi)...',
     ctaSearchVillage: 'Find My Village',
     ctaExploreDevelopment: 'Explore Development',
     heroQuickSelector: 'Select Your Village',
