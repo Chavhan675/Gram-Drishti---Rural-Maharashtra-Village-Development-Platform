@@ -19,7 +19,8 @@ import {
   ExternalLink,
   Wifi,
   WifiOff,
-  Sparkles
+  Sparkles,
+  Vote
 } from 'lucide-react';
 import { PWAInstallButton } from './PWAInstallButton';
 
@@ -209,6 +210,21 @@ export const Header: React.FC = () => {
                 </button>
                 <button
                   onClick={() => {
+                    navigateTo('village-governance');
+                    setOpenDropdown(null);
+                  }}
+                  className="w-full text-left px-4 py-2.5 hover:bg-orange-50 flex items-center gap-2.5 text-stone-800 border-t border-stone-100 transition-colors"
+                >
+                  <div className="w-6 h-6 rounded bg-orange-100 text-orange-700 flex items-center justify-center shrink-0">
+                    <Vote className="w-3.5 h-3.5" />
+                  </div>
+                  <div>
+                    <span className="font-semibold block text-stone-900">{language === 'mr' ? 'निवडणूक व कामकाज' : 'Elections & Governance'}</span>
+                    <span className="text-[10px] text-stone-500 block">{language === 'mr' ? 'सरपंच निकाल, मते व पूर्ण कामे' : 'Head, votes & work audit'}</span>
+                  </div>
+                </button>
+                <button
+                  onClick={() => {
                     navigateTo('map');
                     setOpenDropdown(null);
                   }}
@@ -318,6 +334,19 @@ export const Header: React.FC = () => {
           >
             {t.navDevelopment}
             {currentPage === 'village-development' && (
+              <span className="absolute bottom-0 left-0 right-0 h-0.5 bg-gradient-to-r from-orange-600 to-amber-500 rounded-full" />
+            )}
+          </button>
+
+          {/* Elections & Governance Work */}
+          <button
+            onClick={() => navigateTo('village-governance')}
+            className={`transition-colors py-1 hover:text-orange-700 relative flex items-center gap-1 ${
+              currentPage === 'village-governance' ? 'text-orange-800 font-bold' : ''
+            }`}
+          >
+            <span>{language === 'mr' ? 'निवडणूक व कामे' : 'Elections & Work'}</span>
+            {currentPage === 'village-governance' && (
               <span className="absolute bottom-0 left-0 right-0 h-0.5 bg-gradient-to-r from-orange-600 to-amber-500 rounded-full" />
             )}
           </button>
@@ -522,6 +551,16 @@ export const Header: React.FC = () => {
             className="w-full text-left px-3 py-2 text-sm font-medium rounded hover:bg-stone-50"
           >
             {language === 'mr' ? 'गावाची माहिती (Village Overview)' : 'Village Overview'}
+          </button>
+
+          <button
+            onClick={() => {
+              navigateTo('village-governance');
+              setIsMobileMenuOpen(false);
+            }}
+            className="w-full text-left px-3 py-2 text-sm font-bold text-orange-900 bg-orange-50/80 rounded hover:bg-orange-100/80"
+          >
+            🗳️ {language === 'mr' ? 'निवडणूक निकाल व कामकाज (Elections & Work)' : 'Elections & Governance Work'}
           </button>
 
           <button

@@ -41,8 +41,22 @@ export const VillageOverviewPage: React.FC = () => {
   const villageProjects = projects.filter((p) => p.villageId === selectedVillage.id);
   const villageFacilities = facilities.filter((f) => f.villageId === selectedVillage.id);
 
-  // The 6 clean core cards with authentic Maharashtra jewel tones
+  // The core cards with authentic Maharashtra jewel tones
   const coreHubCards = [
+    {
+      id: 'village-governance',
+      emoji: '🗳️',
+      titleMr: 'निवडणूक व कामकाज (Elections & Work)',
+      titleEn: 'Elections & Governance Record',
+      actionMr: 'निकाल व कामे पहा →',
+      actionEn: 'View Results & Work →',
+      descMr: 'विद्यमान सरपंच, विजयी मते व मताधिक्य, प्रभाग सदस्य आणि कार्यकाळातील प्रत्यक्ष विकासकामे.',
+      descEn: 'Elected Sarpanch, vote tally & victory margin, ward council, and audited work delivery.',
+      countLabel: `${selectedVillage.election.sarpanchElection.votesSecured.toLocaleString('en-IN')} ${language === 'mr' ? 'मते (+' + selectedVillage.election.sarpanchElection.victoryMargin + ' मताधिक्य)' : 'Votes'}`,
+      cardTheme: 'border-orange-300 hover:border-orange-600 bg-gradient-to-b from-orange-100/60 via-amber-50/40 to-white ring-1 ring-orange-200/70',
+      badgeTheme: 'bg-orange-200/80 text-orange-950 border-orange-300 font-bold',
+      actionTheme: 'text-orange-800 group-hover:text-orange-950 font-bold'
+    },
     {
       id: 'village-profile',
       emoji: '🏡',
@@ -270,7 +284,56 @@ export const VillageOverviewPage: React.FC = () => {
           </div>
         </div>
 
-        {/* 4. THE 6 PRIMARY NAVIGATION TILES (The Heart of Gram Drishti) */}
+        {/* 3.5 GOVERNANCE & ELECTIONS SPOTLIGHT BANNER */}
+        <div className="p-5 sm:p-6 bg-gradient-to-r from-amber-500/15 via-orange-500/10 to-emerald-500/10 rounded-2xl border-2 border-amber-300/90 shadow-xs flex flex-col md:flex-row items-start md:items-center justify-between gap-4">
+          <div className="space-y-1.5 max-w-2xl">
+            <div className="flex flex-wrap items-center gap-2">
+              <span className="text-[11px] font-black uppercase text-orange-950 bg-amber-200/90 px-2.5 py-0.5 rounded-full border border-amber-300 font-mono inline-flex items-center gap-1">
+                🗳️ {language === 'mr' ? 'विद्यमान सरपंच व निवडणूक निकाल' : 'Current Sarpanch & Election Record'}
+              </span>
+              <span className="text-[11px] font-mono font-bold text-emerald-800 bg-emerald-100 px-2 py-0.5 rounded border border-emerald-300">
+                {selectedVillage.election.termPeriod}
+              </span>
+            </div>
+            <h3 className="text-lg sm:text-xl font-black text-stone-950 font-serif">
+              {language === 'mr' ? selectedVillage.election.sarpanchElection.electedHeadMr : selectedVillage.election.sarpanchElection.electedHeadEn}
+              <span className="text-xs font-normal text-stone-600 ml-2">
+                ({language === 'mr' ? selectedVillage.election.sarpanchElection.panelNameMr : selectedVillage.election.sarpanchElection.panelNameEn})
+              </span>
+            </h3>
+            <p className="text-xs text-stone-700 flex flex-wrap items-center gap-x-3 gap-y-1">
+              <span>
+                {language === 'mr' ? 'मिळालेली मते:' : 'Votes Secured:'}{' '}
+                <strong className="font-mono text-orange-900 font-bold">
+                  {selectedVillage.election.sarpanchElection.votesSecured.toLocaleString('en-IN')}
+                </strong>{' '}
+                ({selectedVillage.election.sarpanchElection.voteSharePercent}%)
+              </span>
+              <span className="text-stone-300">·</span>
+              <span className="text-emerald-800 font-bold font-mono">
+                +{selectedVillage.election.sarpanchElection.victoryMargin} {language === 'mr' ? 'मताधिक्य' : 'Margin'}
+              </span>
+              <span className="text-stone-300">·</span>
+              <span>
+                {language === 'mr' ? 'झालेला निधी खर्च:' : 'Funds Spent:'}{' '}
+                <strong className="font-mono text-stone-900 font-bold">
+                  ₹{selectedVillage.election.governanceWork.utilizedBudgetLakhs}L
+                </strong>{' '}
+                ({selectedVillage.election.governanceWork.completedWorksCount} {language === 'mr' ? 'पूर्ण कामे' : 'works done'})
+              </span>
+            </p>
+          </div>
+
+          <button
+            onClick={() => navigateTo('village-governance')}
+            className="px-4 py-2.5 bg-gradient-to-r from-orange-600 to-amber-600 hover:from-orange-700 hover:to-amber-700 text-white font-bold text-xs rounded-xl shadow-sm hover:shadow transition-all inline-flex items-center gap-1.5 shrink-0 cursor-pointer"
+          >
+            <span>{language === 'mr' ? 'सविस्तर निकाल व कामे पहा' : 'View Full Voting & Work Audit'}</span>
+            <ArrowRight className="w-4 h-4" />
+          </button>
+        </div>
+
+        {/* 4. THE PRIMARY NAVIGATION TILES (The Heart of Gram Drishti) */}
         <div>
           <div className="mb-4 text-center sm:text-left">
             <span className="text-xs font-bold text-orange-700 uppercase tracking-wider font-mono">

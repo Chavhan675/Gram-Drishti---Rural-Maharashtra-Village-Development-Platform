@@ -5,6 +5,7 @@ export type PageView =
   | 'search'
   | 'village-overview'
   | 'village-profile'
+  | 'village-governance'
   | 'village-development'
   | 'village-facilities'
   | 'village-statistics'
@@ -156,6 +157,98 @@ export interface VillageScorecard {
   socialDevelopment: ScorecardMetric;
 }
 
+export interface CandidateVoteResult {
+  candidateNameMr: string;
+  candidateNameEn: string;
+  partyOrPanelMr: string;
+  partyOrPanelEn: string;
+  votesSecured: number;
+  voteSharePercent: number;
+  isWinner: boolean;
+  photoUrl?: string;
+}
+
+export interface WardMember {
+  wardNumber: number;
+  wardNameMr: string;
+  wardNameEn: string;
+  memberNameMr: string;
+  memberNameEn: string;
+  designationMr: string; // उदा. 'उपसरपंच', 'प्रभाग सदस्य'
+  designationEn: string; // 'Up-Sarpanch', 'Ward Member'
+  reservationCategoryMr: string;
+  reservationCategoryEn: string;
+  votesSecured: number;
+  margin: number;
+  totalWardVotes: number;
+  contactNumber: string;
+  keyResponsibilitiesMr: string;
+  keyResponsibilitiesEn: string;
+}
+
+export interface WorkDeliverableItem {
+  id: string;
+  titleMr: string;
+  titleEn: string;
+  category: 'water' | 'roads' | 'health' | 'education' | 'solar' | 'sanitation' | 'agriculture' | 'civic';
+  status: 'completed' | 'in-progress' | 'approved';
+  allocatedFundsLakhs: number;
+  spentFundsLakhs: number;
+  completionYear: string;
+  schemeSourceMr: string;
+  schemeSourceEn: string;
+  impactDescriptionMr: string;
+  impactDescriptionEn: string;
+}
+
+export interface SarpanchGovernanceWork {
+  tenureYears: string;
+  totalDevelopmentBudgetLakhs: number;
+  utilizedBudgetLakhs: number;
+  budgetUtilizationPercent: number;
+  completedWorksCount: number;
+  ongoingWorksCount: number;
+  gramSabhaMeetingsHeld: number;
+  resolutionsPassed: number;
+  resolutionsImplemented: number;
+  grievanceResolutionRatePercent: number;
+  citizenApprovalRatingPercent: number;
+  keyAchievementsMr: string[];
+  keyAchievementsEn: string[];
+  workItems: WorkDeliverableItem[];
+}
+
+export interface ElectionInfo {
+  electionYear: number;
+  termPeriod: string;
+  electionDate: string;
+  totalVoters: number;
+  maleVoters: number;
+  femaleVoters: number;
+  totalVotesPolled: number;
+  voterTurnoutPercent: number;
+  sarpanchSeatCategoryMr: string;
+  sarpanchSeatCategoryEn: string;
+  sarpanchElection: {
+    electedHeadMr: string;
+    electedHeadEn: string;
+    photoUrl?: string;
+    panelNameMr: string;
+    panelNameEn: string;
+    votesSecured: number;
+    voteSharePercent: number;
+    victoryMargin: number;
+    runnerUpNameMr: string;
+    runnerUpNameEn: string;
+    runnerUpVotes: number;
+    runnerUpPanelMr: string;
+    runnerUpPanelEn: string;
+    candidates: CandidateVoteResult[];
+  };
+  wardMembers: WardMember[];
+  governanceWork: SarpanchGovernanceWork;
+}
+
 export interface Village {
   id: string;
   nameMr: string;
@@ -178,6 +271,7 @@ export interface Village {
   agriculture: AgricultureProfile;
   scorecard: VillageScorecard;
   coverImage?: string;
+  election: ElectionInfo;
 }
 
 export interface GovernmentScheme {

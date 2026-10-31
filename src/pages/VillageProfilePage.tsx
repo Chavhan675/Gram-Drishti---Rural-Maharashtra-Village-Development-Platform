@@ -214,11 +214,16 @@ export const VillageProfilePage: React.FC = () => {
           </div>
 
           <div className="grid grid-cols-1 md:grid-cols-3 gap-5 text-xs">
-            {/* Sarpanch - Saffron Theme */}
-            <div className="p-5 bg-gradient-to-b from-orange-50/90 to-white rounded-2xl border border-orange-200 shadow-2xs space-y-2.5">
-              <span className="text-[11px] font-bold text-orange-900 bg-orange-100/90 px-2.5 py-1 rounded-full border border-orange-300 inline-block font-mono">
-                🚩 {language === 'mr' ? 'सरपंच (लोकप्रतिनिधी)' : 'Sarpanch (Elected Head)'}
-              </span>
+            {/* Sarpanch - Saffron Theme with Voting Details */}
+            <div className="p-5 bg-gradient-to-b from-orange-50/90 to-white rounded-2xl border-2 border-orange-200/90 shadow-2xs space-y-2.5">
+              <div className="flex items-center justify-between">
+                <span className="text-[11px] font-bold text-orange-900 bg-orange-100/90 px-2.5 py-1 rounded-full border border-orange-300 inline-block font-mono">
+                  🚩 {language === 'mr' ? 'सरपंच (लोकप्रतिनिधी)' : 'Sarpanch (Elected Head)'}
+                </span>
+                <span className="text-[10px] font-bold text-emerald-800 bg-emerald-100 px-2 py-0.5 rounded font-mono">
+                  +{selectedVillage.election.sarpanchElection.victoryMargin} {language === 'mr' ? 'मताधिक्य' : 'Margin'}
+                </span>
+              </div>
               <h4 className="text-base font-bold text-stone-950 pt-1 font-serif">
                 {language === 'mr' ? admin.sarpanchNameMr : admin.sarpanchNameEn}
               </h4>
@@ -226,9 +231,25 @@ export const VillageProfilePage: React.FC = () => {
                 <Phone className="w-3.5 h-3.5 text-orange-600" />
                 <span>{admin.sarpanchContact}</span>
               </p>
-              <p className="text-[11px] text-stone-500 pt-1">
-                {language === 'mr' ? 'ग्रामपंचायत सामान्य प्रशासन व ग्रामसभा अध्यक्ष' : 'Presides over Gram Sabha & Village Executive'}
-              </p>
+              <div className="p-2.5 bg-orange-100/60 rounded-xl text-[11px] text-stone-700 space-y-1">
+                <div className="flex justify-between font-mono">
+                  <span>{language === 'mr' ? 'मिळालेली मते:' : 'Votes Polled:'}</span>
+                  <span className="font-bold text-orange-950">
+                    {selectedVillage.election.sarpanchElection.votesSecured.toLocaleString('en-IN')}{' '}
+                    ({selectedVillage.election.sarpanchElection.voteSharePercent}%)
+                  </span>
+                </div>
+                <div className="flex justify-between text-stone-600">
+                  <span>{language === 'mr' ? 'कार्यकाळ:' : 'Term:'}</span>
+                  <span className="font-semibold text-stone-900">{selectedVillage.election.termPeriod}</span>
+                </div>
+              </div>
+              <button
+                onClick={() => navigateTo('village-governance')}
+                className="w-full mt-1 py-1.5 px-3 bg-orange-600 hover:bg-orange-700 text-white font-bold text-xs rounded-xl shadow-2xs transition-colors flex items-center justify-center gap-1 cursor-pointer"
+              >
+                <span>{language === 'mr' ? 'निवडणूक निकाल व कामे पहा →' : 'View Voting & Work Audit →'}</span>
+              </button>
             </div>
 
             {/* Gram Sevak - Emerald Theme */}
