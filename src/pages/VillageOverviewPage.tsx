@@ -16,7 +16,8 @@ import {
   ShieldCheck,
   Printer,
   ChevronRight,
-  ExternalLink
+  ExternalLink,
+  FileText
 } from 'lucide-react';
 
 export const VillageOverviewPage: React.FC = () => {
@@ -56,6 +57,20 @@ export const VillageOverviewPage: React.FC = () => {
       cardTheme: 'border-orange-300 hover:border-orange-600 bg-gradient-to-b from-orange-100/60 via-amber-50/40 to-white ring-1 ring-orange-200/70',
       badgeTheme: 'bg-orange-200/80 text-orange-950 border-orange-300 font-bold',
       actionTheme: 'text-orange-800 group-hover:text-orange-950 font-bold'
+    },
+    {
+      id: 'apply-document',
+      emoji: '📜',
+      titleMr: 'ग्राम ई-सेवा व दाखले (Documents)',
+      titleEn: 'Citizen Document Desk',
+      actionMr: 'दाखला अर्ज करा →',
+      actionEn: 'Apply Documents →',
+      descMr: 'रहिवासी दाखला, जन्म/मृत्यू नोंद, उत्पन्न, ७/१२ उतारा आणि ग्रामपंचायत ना-हरकत (RTS कायदा २०१५).',
+      descEn: 'Residence, birth/death, income, 7/12 land records, and Gram Panchayat NOC with RTS guarantee.',
+      countLabel: language === 'mr' ? '१० अधिकृत सेवा' : '10 RTS Services',
+      cardTheme: 'border-emerald-300 hover:border-emerald-600 bg-gradient-to-b from-emerald-100/60 via-teal-50/40 to-white ring-1 ring-emerald-200/70',
+      badgeTheme: 'bg-emerald-200/80 text-emerald-950 border-emerald-300 font-bold',
+      actionTheme: 'text-emerald-800 group-hover:text-emerald-950 font-bold'
     },
     {
       id: 'village-profile',
@@ -215,6 +230,14 @@ export const VillageOverviewPage: React.FC = () => {
 
           {/* Quick Action Ribbon */}
           <div className="flex flex-wrap items-center justify-center gap-2.5 pt-1">
+            <button
+              onClick={() => navigateTo('apply-document')}
+              className="px-4 py-2 bg-gradient-to-r from-emerald-700 to-teal-700 hover:from-emerald-800 hover:to-teal-800 text-white font-bold text-xs rounded-lg transition-all inline-flex items-center gap-1.5 shadow-sm hover:shadow"
+            >
+              <FileText className="w-3.5 h-3.5 text-emerald-200" />
+              <span>{language === 'mr' ? 'दाखले अर्ज करा (ई-सेवा)' : 'Apply Documents (RTS)'}</span>
+            </button>
+
             <button
               onClick={() => setIsFactsheetModalOpen(true)}
               className="px-4 py-2 bg-gradient-to-r from-orange-600 to-amber-600 hover:from-orange-700 hover:to-amber-700 text-white font-bold text-xs rounded-lg transition-all inline-flex items-center gap-1.5 shadow-sm hover:shadow"

@@ -280,12 +280,12 @@ export const Header: React.FC = () => {
             <button
               onClick={() => toggleDropdown('services')}
               className={`flex items-center gap-1 py-1 hover:text-orange-700 transition-colors ${
-                ['schemes', 'village-facilities'].includes(currentPage)
+                ['schemes', 'village-facilities', 'apply-document'].includes(currentPage)
                   ? 'text-orange-800 font-bold'
                   : ''
               }`}
             >
-              <span>{language === 'mr' ? 'सुविधा व योजना' : 'Services'}</span>
+              <span>{language === 'mr' ? 'सुविधा व दाखले' : 'Services & Docs'}</span>
               <ChevronDown className="w-3.5 h-3.5 text-amber-600" />
             </button>
 
@@ -293,10 +293,28 @@ export const Header: React.FC = () => {
               <div className="absolute top-full left-0 mt-2 w-64 bg-white border border-amber-200 rounded-xl shadow-xl py-2 z-50 text-xs ring-1 ring-black/5">
                 <button
                   onClick={() => {
+                    navigateTo('apply-document');
+                    setOpenDropdown(null);
+                  }}
+                  className="w-full text-left px-4 py-2.5 hover:bg-emerald-50 flex items-center gap-2.5 text-stone-800 transition-colors"
+                >
+                  <div className="w-6 h-6 rounded bg-emerald-100 text-emerald-800 flex items-center justify-center shrink-0">
+                    <FileText className="w-3.5 h-3.5" />
+                  </div>
+                  <div>
+                    <div className="flex items-center gap-1.5">
+                      <span className="font-semibold block text-stone-900">{language === 'mr' ? 'दाखले व प्रमाणपत्रे अर्ज करा' : 'Apply for Documents'}</span>
+                      <span className="text-[9px] bg-emerald-100 text-emerald-800 font-bold px-1 rounded">RTS 2015</span>
+                    </div>
+                    <span className="text-[10px] text-stone-500 block">{language === 'mr' ? 'रहिवासी, जन्म, मृत्यू, उत्पन्न व ७/१२' : 'Residence, birth, income, 7/12 & NOC'}</span>
+                  </div>
+                </button>
+                <button
+                  onClick={() => {
                     navigateTo('schemes');
                     setOpenDropdown(null);
                   }}
-                  className="w-full text-left px-4 py-2.5 hover:bg-amber-50 flex items-center gap-2.5 text-stone-800 transition-colors"
+                  className="w-full text-left px-4 py-2.5 hover:bg-amber-50 flex items-center gap-2.5 text-stone-800 border-t border-stone-100 transition-colors"
                 >
                   <div className="w-6 h-6 rounded bg-amber-100 text-amber-700 flex items-center justify-center shrink-0">
                     <FileSpreadsheet className="w-3.5 h-3.5" />
@@ -561,6 +579,17 @@ export const Header: React.FC = () => {
             className="w-full text-left px-3 py-2 text-sm font-bold text-orange-900 bg-orange-50/80 rounded hover:bg-orange-100/80"
           >
             🗳️ {language === 'mr' ? 'निवडणूक निकाल व कामकाज (Elections & Work)' : 'Elections & Governance Work'}
+          </button>
+
+          <button
+            onClick={() => {
+              navigateTo('apply-document');
+              setIsMobileMenuOpen(false);
+            }}
+            className="w-full text-left px-3 py-2 text-sm font-bold text-emerald-950 bg-emerald-50/90 border border-emerald-300 rounded hover:bg-emerald-100/90 flex items-center justify-between"
+          >
+            <span>📜 {language === 'mr' ? 'दाखले अर्ज करा (ई-सेवा RTS)' : 'Apply for Documents (RTS)'}</span>
+            <span className="text-[10px] bg-emerald-200 text-emerald-900 px-1.5 py-0.5 rounded font-mono font-bold">10 Services</span>
           </button>
 
           <button

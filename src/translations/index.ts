@@ -92,6 +92,16 @@ export const translations = {
     grievanceResolvedLabel: 'तक्रार निवारण दर',
     keyAchievementsTitle: 'कार्यकाळातील प्रमुख ऐतिहासिक उपलब्धी',
     allWorksDeliveredTitle: 'पूर्ण व प्रगतीपथावरील कामांची सविस्तर यादी',
+
+    // Citizen Document Desk (लोकसेवा हक्क व दाखले अर्ज)
+    applyDocumentTitle: 'ग्राम ई-सेवा व दाखले अर्ज केंद्र (Citizen Document Desk)',
+    applyDocumentSubtitle: 'रहिवासी दाखला, जन्म-मृत्यू नोंद, ७/१२ उतारा, उत्पन्न दाखला, नाहरकत (NOC) व समाजकल्याण योजनांसाठी सुलभ ऑनलाइन अर्ज.',
+    navApplyDocument: 'दाखले अर्ज करा',
+    cardApplyDocTitle: 'दाखले व ई-सेवा अर्ज (Apply Documents)',
+    cardApplyDocDesc: 'रहिवासी, जन्म-मृत्यू, ७/१२ उतारा, उत्पन्न दाखला व ना-हरकत (NOC) दाखल्यासाठी घरबसल्या अर्ज करा.',
+    tabNewApplication: 'नवीन दाखल्यासाठी अर्ज करा',
+    tabTrackApplication: 'अर्जाची स्थिती व दाखला डाऊनलोड',
+    rtsGuaranteeBadge: 'महाराष्ट्र लोकसेवा हक्क अधिनियम (RTS Act २०१५) हमी',
     
     // Development works
     developmentTitle: 'गावातील विकासकामे व प्रकल्प',
@@ -312,6 +322,16 @@ export const translations = {
     grievanceResolvedLabel: 'Grievance Redressal Rate',
     keyAchievementsTitle: 'Key Landmark Achievements in Tenure',
     allWorksDeliveredTitle: 'Comprehensive Work & Infrastructure Audit',
+
+    // Citizen Document Desk (लोकसेवा हक्क व दाखले अर्ज)
+    applyDocumentTitle: 'Citizen Certificate & Document Desk',
+    applyDocumentSubtitle: 'Apply easily for Gram Panchayat residence, birth/death, digital 7/12 land extract, income, and NOC certificates.',
+    navApplyDocument: 'Apply for Documents',
+    cardApplyDocTitle: 'Apply Documents & E-Seva',
+    cardApplyDocDesc: 'Apply easily online for residence certificates, 7/12 land records, income certs, and utility NOCs.',
+    tabNewApplication: 'Apply for New Certificate',
+    tabTrackApplication: 'Track Application & Download',
+    rtsGuaranteeBadge: 'Maharashtra Right to Public Services Act (RTS 2015) Assured',
     
     // Development works
     developmentTitle: 'Civil Works & Development Projects',

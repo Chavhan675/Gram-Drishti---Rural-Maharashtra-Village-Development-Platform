@@ -21,7 +21,8 @@ export type PageView =
   | 'presentation'
   | 'village-3d'
   | 'ai-chat'
-  | 'gis-planner';
+  | 'gis-planner'
+  | 'apply-document';
 
 export type ProjectStatus = 'planned' | 'in-progress' | 'completed' | 'delayed';
 
@@ -330,4 +331,64 @@ export interface Announcement {
   date: string;
   isUrgent?: boolean;
   sourceUrl?: string;
+}
+
+export type DocumentCategory =
+  | 'civil' // जन्म, मृत्यू, विवाह, रहिवासी
+  | 'revenue' // ७/१२, ८-अ, उत्पन्नाचा दाखला
+  | 'noc' // वीज, नळ जोडणी, इमारत बांधकाम
+  | 'welfare'; // बीपीएल, शौचालय अनुदान, पेन्शन शिफारस
+
+export type DocumentApplicationStatus =
+  | 'submitted'
+  | 'under-scrutiny'
+  | 'approved'
+  | 'ready-for-download'
+  | 'rejected';
+
+export interface DocumentTypeInfo {
+  id: string;
+  category: DocumentCategory;
+  nameMr: string;
+  nameEn: string;
+  shortDescMr: string;
+  shortDescEn: string;
+  authorityMr: string;
+  authorityEn: string;
+  serviceDays: number;
+  governmentFee: number;
+  requiredDocsMr: string[];
+  requiredDocsEn: string[];
+  checklistMr: string[];
+  checklistEn: string[];
+  rtsActName: string;
+  iconName: string;
+}
+
+export interface CitizenDocumentApplication {
+  id: string;
+  villageId: string;
+  villageNameMr: string;
+  villageNameEn: string;
+  documentTypeId: string;
+  documentNameMr: string;
+  documentNameEn: string;
+  applicantName: string;
+  applicantAadhaar: string;
+  applicantPhone: string;
+  applicantAddress: string;
+  wardNumber?: number;
+  purpose: string;
+  urgency: 'normal' | 'urgent';
+  deliveryMode: 'digital-download' | 'gram-panchayat-counter' | 'post';
+  attachedDocs: string[];
+  status: DocumentApplicationStatus;
+  submittedAt: string;
+  estimatedDeliveryDate: string;
+  assignedOfficerNameMr: string;
+  assignedOfficerNameEn: string;
+  assignedOfficerContact: string;
+  officerRemarksMr?: string;
+  officerRemarksEn?: string;
+  digitalCertificateId?: string;
 }

@@ -23,6 +23,7 @@ import { Village3DDigitalTwinPage } from './pages/Village3DDigitalTwinPage';
 import { AiChatbotPage } from './pages/AiChatbotPage';
 import { GisPlannerPage } from './pages/GisPlannerPage';
 import { VillageGovernancePage } from './pages/VillageGovernancePage';
+import { ApplyDocumentPage } from './pages/ApplyDocumentPage';
 import { ProjectDetailModal } from './components/ProjectDetailModal';
 import { SchemeDetailModal } from './components/SchemeDetailModal';
 import { ShareVillageModal } from './components/ShareVillageModal';
@@ -40,6 +41,7 @@ const MainContent: React.FC = () => {
       {currentPage === 'village-overview' && <VillageOverviewPage />}
       {currentPage === 'village-profile' && <VillageProfilePage />}
       {currentPage === 'village-governance' && <VillageGovernancePage />}
+      {currentPage === 'apply-document' && <ApplyDocumentPage />}
       {currentPage === 'village-development' && <VillageDevelopmentPage />}
       {currentPage === 'village-facilities' && <VillageFacilitiesPage />}
       {currentPage === 'village-agriculture' && <VillageAgriculturePage />}

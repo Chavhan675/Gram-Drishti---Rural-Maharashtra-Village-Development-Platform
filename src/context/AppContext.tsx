@@ -8,14 +8,19 @@ import {
   GovernmentScheme,
   IssueReport,
   IssueStatus,
-  ProjectStatus
+  ProjectStatus,
+  CitizenDocumentApplication,
+  DocumentApplicationStatus,
+  DocumentTypeInfo
 } from '../types';
 import {
   MOCK_VILLAGES,
   MOCK_PROJECTS,
   MOCK_FACILITIES,
   MOCK_SCHEMES,
-  INITIAL_ISSUE_REPORTS
+  INITIAL_ISSUE_REPORTS,
+  MAHARASHTRA_DOCUMENT_TYPES,
+  INITIAL_DOCUMENT_APPLICATIONS
 } from '../data/mockData';
 
 interface AppContextType {
@@ -57,11 +62,28 @@ interface AppContextType {
   setSelectedProjectModal: (proj: DevelopmentProject | null) => void;
   selectedSchemeModal: GovernmentScheme | null;
   setSelectedSchemeModal: (scheme: GovernmentScheme | null) => void;
+  documentApplications: CitizenDocumentApplication[];
+  documentTypes: DocumentTypeInfo[];
+  applyForDocument: (data: {
+    villageId: string;
+    documentTypeId: string;
+    applicantName: string;
+    applicantAadhaar: string;
+    applicantPhone: string;
+    applicantAddress: string;
+    wardNumber?: number;
+    purpose: string;
+    urgency: 'normal' | 'urgent';
+    deliveryMode: 'digital-download' | 'gram-panchayat-counter' | 'post';
+    attachedDocs: string[];
+  }) => string;
+  updateDocumentStatus: (id: string, status: DocumentApplicationStatus, remarks?: string) => void;
 }
 
 const AppContext = createContext<AppContextType | undefined>(undefined);
 
 const LOCAL_STORAGE_ISSUES_KEY = 'gram_drishti_issues_v1';
+const LOCAL_STORAGE_DOC_APPS_KEY = 'gram_drishti_doc_apps_v1';
 
 export const AppProvider: React.FC<{ children: React.ReactNode }> = ({ children }) => {
   // Always start in English as mandated
@@ -82,6 +104,7 @@ export const AppProvider: React.FC<{ children: React.ReactNode }> = ({ children 
   const [projects, setProjects] = useState<DevelopmentProject[]>(MOCK_PROJECTS);
   const [facilities] = useState<Facility[]>(MOCK_FACILITIES);
   const [schemes] = useState<GovernmentScheme[]>(MOCK_SCHEMES);
+  const [documentTypes] = useState<DocumentTypeInfo[]>(MAHARASHTRA_DOCUMENT_TYPES);
   const [searchQuery, setSearchQuery] = useState<string>('');
 
   const [isAiModalOpen, setIsAiModalOpen] = useState<boolean>(false);
@@ -110,6 +133,27 @@ export const AppProvider: React.FC<{ children: React.ReactNode }> = ({ children 
       // ignore
     }
   }, [issues]);
+
+  // Citizen Document Applications with local storage persistence
+  const [documentApplications, setDocumentApplications] = useState<CitizenDocumentApplication[]>(() => {
+    try {
+      const saved = localStorage.getItem(LOCAL_STORAGE_DOC_APPS_KEY);
+      if (saved) {
+        return JSON.parse(saved);
+      }
+    } catch {
+      // ignore
+    }
+    return INITIAL_DOCUMENT_APPLICATIONS;
+  });
+
+  useEffect(() => {
+    try {
+      localStorage.setItem(LOCAL_STORAGE_DOC_APPS_KEY, JSON.stringify(documentApplications));
+    } catch {
+      // ignore
+    }
+  }, [documentApplications]);
 
   const selectedVillage =
     allVillages.find((v) => v.id === selectedVillageId) || allVillages[0];
@@ -209,6 +253,94 @@ export const AppProvider: React.FC<{ children: React.ReactNode }> = ({ children 
     );
   };
 
+  const applyForDocument = (data: {
+    villageId: string;
+    documentTypeId: string;
+    applicantName: string;
+    applicantAadhaar: string;
+    applicantPhone: string;
+    applicantAddress: string;
+    wardNumber?: number;
+    purpose: string;
+    urgency: 'normal' | 'urgent';
+    deliveryMode: 'digital-download' | 'gram-panchayat-counter' | 'post';
+    attachedDocs: string[];
+  }): string => {
+    const village = allVillages.find((v) => v.id === data.villageId) || selectedVillage;
+    const docType = documentTypes.find((d) => d.id === data.documentTypeId) || documentTypes[0];
+    const randomSuffix = Math.floor(1000 + Math.random() * 9000);
+    const trackingId = `MH-RTS-2026-${randomSuffix}`;
+
+    const deliveryDays = data.urgency === 'urgent' ? Math.max(1, Math.floor(docType.serviceDays / 2)) : docType.serviceDays;
+    const estDate = new Date();
+    estDate.setDate(estDate.getDate() + deliveryDays);
+
+    const isTalathi = docType.category === 'revenue';
+    const officerNameMr = isTalathi ? village.administration.talathiNameMr : village.administration.gramSevakNameMr;
+    const officerNameEn = isTalathi ? village.administration.talathiNameEn : village.administration.gramSevakNameEn;
+    const officerContact = isTalathi ? village.administration.talathiContact : village.administration.gramSevakContact;
+
+    const newApp: CitizenDocumentApplication = {
+      id: trackingId,
+      villageId: village.id,
+      villageNameMr: village.nameMr,
+      villageNameEn: village.nameEn,
+      documentTypeId: docType.id,
+      documentNameMr: docType.nameMr,
+      documentNameEn: docType.nameEn,
+      applicantName: data.applicantName,
+      applicantAadhaar: data.applicantAadhaar.length >= 4 ? `XXXX-XXXX-${data.applicantAadhaar.slice(-4)}` : 'XXXX-XXXX-1234',
+      applicantPhone: data.applicantPhone,
+      applicantAddress: data.applicantAddress,
+      wardNumber: data.wardNumber || 1,
+      purpose: data.purpose,
+      urgency: data.urgency,
+      deliveryMode: data.deliveryMode,
+      attachedDocs: data.attachedDocs,
+      status: 'submitted',
+      submittedAt: new Date().toLocaleDateString('mr-IN', {
+        day: 'numeric',
+        month: 'long',
+        year: 'numeric'
+      }),
+      estimatedDeliveryDate: estDate.toLocaleDateString('mr-IN', {
+        day: 'numeric',
+        month: 'long',
+        year: 'numeric'
+      }),
+      assignedOfficerNameMr: officerNameMr,
+      assignedOfficerNameEn: officerNameEn,
+      assignedOfficerContact: officerContact,
+      officerRemarksMr: 'अर्ज यशस्वीरीत्या दाखल झाला असून कागदपत्रे तपासणीसाठी पाठवण्यात आली आहेत.',
+      officerRemarksEn: 'Application submitted successfully. Under primary document scrutiny.'
+    };
+
+    setDocumentApplications((prev) => [newApp, ...prev]);
+    return trackingId;
+  };
+
+  const updateDocumentStatus = (id: string, status: DocumentApplicationStatus, remarks?: string) => {
+    setDocumentApplications((prev) =>
+      prev.map((app) => {
+        if (app.id === id) {
+          const digitalCertificateId =
+            status === 'ready-for-download' || status === 'approved'
+              ? app.digitalCertificateId || `CERT-MH-${Math.floor(1000 + Math.random() * 9000)}-2026`
+              : app.digitalCertificateId;
+
+          return {
+            ...app,
+            status,
+            digitalCertificateId,
+            officerRemarksMr: remarks || app.officerRemarksMr,
+            officerRemarksEn: remarks || app.officerRemarksEn
+          };
+        }
+        return app;
+      })
+    );
+  };
+
   return (
     <AppContext.Provider
       value={{
@@ -224,6 +356,10 @@ export const AppProvider: React.FC<{ children: React.ReactNode }> = ({ children 
         facilities,
         schemes,
         issues,
+        documentApplications,
+        documentTypes,
+        applyForDocument,
+        updateDocumentStatus,
         navigateTo,
         addIssueReport,
         updateIssueStatus,
